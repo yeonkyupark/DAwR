@@ -1,4 +1,14 @@
+# R and Rstudio specific files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# don't push local rendered files in master branch
+_book/
+_bookdown_files/
+libs/
+**/*.bib
+**/*.html 
+# ignore all html files except:
+!**/mathjax_header.html
