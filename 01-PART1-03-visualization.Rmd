@@ -1,6 +1,6 @@
 # 데이터 시각화
 
-```{r}
+```{r echo=FALSE, include=FALSE}
 if(!require(ggplot2)) {
   install.packages("ggplot2")
   library(ggplot2)
