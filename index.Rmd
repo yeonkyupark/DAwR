@@ -37,12 +37,14 @@ knitr::opts_chunk$set(
 knitr::write_bib(c(.packages()), 'packages.bib')
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, include=FALSE}
 if(!require(bibtex)) {
   install.packages("bibtex")
   library(bibtex)
 }
+```
 
+```{r echo=FALSE}
 refs <- read.bib("packages.bib")
 keys <- names(refs)
 keys
