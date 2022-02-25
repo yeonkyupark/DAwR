@@ -38,8 +38,10 @@ knitr::write_bib(c(.packages()), 'packages.bib')
 ```
 
 ```{r echo=FALSE}
-if(!require(bibtex)) {install.packages("bibtex")}
-library(bibtex)
+if(!require(bibtex)) {
+  install.packages("bibtex")
+  library(bibtex)
+}
 
 refs <- read.bib("packages.bib")
 keys <- names(refs)
