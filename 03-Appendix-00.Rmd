@@ -1,0 +1,19 @@
+# 시각화
+
+## 확률분포 그래프 그리기
+
+```{r echo=FALSE, include=FALSE}
+if(!require(ggplot2)) {
+  install.packages("ggplot2")
+  library(ggplot2)
+}
+```
+
+```{r}
+ggplot(data = data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) + 
+  labs(title = "Normal Distribution", x="x", y="") +
+  scale_y_continuous(breaks = NULL) +
+  theme_bw()
+```
+
