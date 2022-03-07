@@ -1,15 +1,61 @@
 # 데이터 전처리
 
+```{r echo=FALSE, include=FALSE}
+if(!require(palmerpenguins)) {
+  install.packages("palmerpenguins")
+  library(palmerpenguins)
+}
+
+if(!require(dplyr)) {
+  install.packages("dplyr")
+  library(dplyr)
+}
+
+if(!require(VIM)) {
+  install.packages("VIM")
+  library(VIM)
+}
+```
+
+
 ## 결측치 처리
 
 결측치는 관측된 표본에서 누락된 값을 의미한다. 관측치의 종류에서 다음과 같다.
 
 ![결측치 종류](https://miro.medium.com/max/1400/1*cPNnAnoOYArYyTDPNjJg3A.gif)  
 
-
-
 ### 결측치 확인
 
+결측치를 확인하는 방법은 여러가지가 있으나 `is.na()` 함수나 `summary()` 함수를 통해 가능하다.
+
+```{r}
+summary(penguins)
+```
+
+```{r}
+colSums(is.na(penguins))
+```
+
+`VIM` 패키지 `aggr()` 함수를 사용하면 결측치를 시각화 할 수 있다.
+
+```{r}
+aggr(penguins, prop=F, numbers=T)
+```
+
+```{r}
+marginplot(penguins[c(3:4)], pch=20, col=c("darkgray", "red", "blue"))
+```
+
 ### 결측치 제거
+
+결측치가 변수가 영향이 없고 표본 크기가 충분히 크다면 간단히 제거함으로써 데이터를 정재할 수 있다.
+
+```{r}
+penguins.naomit1 <- na.omit(penguins); penguins.naomit2 <- na.omit(penguins);
+rbind(penguins.naomit1 = colSums(is.na(penguins.naomit1)), 
+      penguins.naomit2 = colSums(is.na(penguins.naomit2)))
+```
+
+
 
 ### 결측치 대체
