@@ -15,6 +15,12 @@ if(!require(VIM)) {
   install.packages("VIM")
   library(VIM)
 }
+
+if(!require(mice)) {
+  install.packages("mice")
+  library(mice)
+}
+
 ```
 
 
@@ -44,6 +50,12 @@ aggr(penguins, prop=F, numbers=T)
 
 ```{r}
 marginplot(penguins[c(3:4)], pch=20, col=c("darkgray", "red", "blue"))
+```
+
+`mice` 패키지 `md.pattern()` 함수를 이용해서도 결측치를 확인할 수 있다.
+
+```{r}
+md.pattern(penguins)
 ```
 
 ### 결측치 제거
