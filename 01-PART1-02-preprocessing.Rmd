@@ -48,7 +48,7 @@ marginplot(penguins[c(3:4)], pch=20, col=c("darkgray", "red", "blue"))
 
 ### 결측치 제거
 
-결측치가 변수가 영향이 없고 표본 크기가 충분히 크다면 간단히 제거함으로써 데이터를 정재할 수 있다.
+결측치가 변수가 영향이 없고 표본 크기가 충분히 크다면 간단히 제거함으로써 데이터를 정제할 수 있다.
 
 ```{r}
 penguins.naomit1 <- na.omit(penguins); penguins.naomit2 <- na.omit(penguins);
@@ -56,6 +56,40 @@ rbind(penguins.naomit1 = colSums(is.na(penguins.naomit1)),
       penguins.naomit2 = colSums(is.na(penguins.naomit2)))
 ```
 
-
-
 ### 결측치 대체
+
+#### 단순 대체
+
+결측치를 하나의 값(0, 평균/중앙값 등)으로 대체하는 방법이다. 이 방법은 무작위적이지 않기 때문에 무작위 오차가 발생하지 않는다. 즉 누락된 데이터의 양이 많을수록 표준오차가 과소평가되고 변수들간의 상관관계에 영향을 주어 부정확한 p값을 산출하게 된다.  
+
+##### NA값을 제거하고 평균 계산
+
+```{r}
+p <- penguins[c(3:6)]
+for(i in colnames(p)) { 
+  p[is.na(p[,i]), i] <- 0
+}
+colMeans(p)
+```
+
+##### 0으로 대체  
+
+```{r}
+p.0 <- penguins[c(3:6)]
+for(i in colnames(p.0)) { 
+  p.0[is.na(p.0[,i]), i] <- 0
+}
+colMeans(p.0)
+```
+
+##### 평균으로 대체  
+
+```{r}
+p.mean <- penguins[c(3:6)]
+for(i in colnames(p.mean)) { 
+  p.mean[is.na(p.mean[,i]), i] <- 0
+}
+colMeans(p.mean)
+```
+
+#### 다중 대체
