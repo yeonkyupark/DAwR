@@ -15,6 +15,12 @@ if(!require(VIM)) {
   install.packages("VIM")
   library(VIM)
 }
+
+if(!require(mice)) {
+  install.packages("mice")
+  library(mice)
+}
+
 ```
 
 
@@ -66,10 +72,7 @@ rbind(penguins.naomit1 = colSums(is.na(penguins.naomit1)),
 
 ```{r}
 p <- penguins[c(3:6)]
-for(i in colnames(p)) { 
-  p[is.na(p[,i]), i] <- 0
-}
-colMeans(p)
+colMeans(p, na.rm = T)
 ```
 
 ##### 0으로 대체  
@@ -85,11 +88,35 @@ colMeans(p.0)
 ##### 평균으로 대체  
 
 ```{r}
-p.mean <- penguins[c(3:6)]
+p.mean <- as.data.frame(penguins[c(3:6)])
+all_column_mean <- apply(p.mean, 2, mean, na.rm=T)
 for(i in colnames(p.mean)) { 
-  p.mean[is.na(p.mean[,i]), i] <- 0
+  p.mean[is.na(p.mean[,i]), i] <- all_column_mean[i]
 }
 colMeans(p.mean)
 ```
 
 #### 다중 대체
+
+시뮬레이션을 통해 제시된 최적의 해로 대체한다. `MICE`와 ``Amelia`가 다중 대체법을 지원하는 대표적인  패키지이다. 
+
+```{r}
+p.mice <- mice(penguins, m=1)
+p.mice.complete <- complete(p.mice,1)
+```
+
+**제거/대체를 통해 데이터 정제한 평균값 비교**
+
+```{r}
+rbind(
+  P.orig = colMeans(p, na.rm = T),
+  P.zero = colMeans(p.0),
+  P.mean = colMeans(p.mean),
+  p.mice = colMeans(p.mice.complete[c(3:6)])
+)
+```
+
+```{r}
+
+```
+
