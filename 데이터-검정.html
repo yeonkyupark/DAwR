@@ -30,7 +30,7 @@
 <meta name="author" content="PARK Yeonkyu" />
 
 
-<meta name="date" content="2022-03-07" />
+<meta name="date" content="2022-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,9 +194,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="정규성-검정" class="section level2 hasAnchor">
 <h2><span class="header-section-number">5.1</span> 정규성 검정<a href="데이터-검정.html#정규성-검정" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>정규분포를 따른 통계분석 기법을 사용하기 위해서는 표본의 정규성 여부를 확인해야 한다. 정규성 검정은 <code>shapiro.test()</code> 함수나 <code>qqnorm()</code> 함수를 통해 확인할 수 있다.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="데이터-검정.html#cb19-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb19-2"><a href="데이터-검정.html#cb19-2"></a>sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">10</span>) <span class="co"># 정규분포 상의 표본 생성</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="데이터-검정.html#cb20-1"></a><span class="kw">shapiro.test</span>(sample)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="데이터-검정.html#cb24-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-2"><a href="데이터-검정.html#cb24-2"></a>sample &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">100</span>, <span class="dt">sd=</span><span class="dv">10</span>) <span class="co"># 정규분포 상의 표본 생성</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="데이터-검정.html#cb25-1"></a><span class="kw">shapiro.test</span>(sample)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -204,22 +204,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## W = 0.99388, p-value = 0.9349</code></pre>
 <p>Shapiro-Wilk 정규성 검정은 주어진 표본이 정규성을 따른다는 귀무가설을 검정한다. p값이 0.9349으로 귀무가설을 채택한다. 즉 주어진 표본은 정규성을 따른다고 판단된다.</p>
 <p>qqnorm() 함수와 qqline() 함수는 정규성 여부를 시각화 한다.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="데이터-검정.html#cb22-1"></a><span class="kw">qqnorm</span>(sample, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Sample from Normal Distribution&quot;</span>)</span>
-<span id="cb22-2"><a href="데이터-검정.html#cb22-2"></a><span class="kw">qqline</span>(sample)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="데이터-검정.html#cb27-1"></a><span class="kw">qqnorm</span>(sample, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Sample from Normal Distribution&quot;</span>)</span>
+<span id="cb27-2"><a href="데이터-검정.html#cb27-2"></a><span class="kw">qqline</span>(sample)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>참고로 일양분포(uniform distribution)로 생성된 표본의 경우 정규성 검정 결과는 다음과 같다.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="데이터-검정.html#cb23-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb23-2"><a href="데이터-검정.html#cb23-2"></a>sample_uni &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min=</span><span class="dv">2</span>, <span class="dt">max=</span><span class="dv">4</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="데이터-검정.html#cb24-1"></a><span class="kw">shapiro.test</span>(sample_uni)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="데이터-검정.html#cb28-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb28-2"><a href="데이터-검정.html#cb28-2"></a>sample_uni &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>, <span class="dt">min=</span><span class="dv">2</span>, <span class="dt">max=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="데이터-검정.html#cb29-1"></a><span class="kw">shapiro.test</span>(sample_uni)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  sample_uni
 ## W = 0.95237, p-value = 0.001192</code></pre>
 <p>p값이 0.0012로 귀무가설을 기각한다. 즉 주어진 표본은 정규성을 따른다고 판단할 수 없다.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="데이터-검정.html#cb26-1"></a><span class="kw">qqnorm</span>(sample_uni, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Sample from Uniform Distribution&quot;</span>)</span>
-<span id="cb26-2"><a href="데이터-검정.html#cb26-2"></a><span class="kw">qqline</span>(sample_uni)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="데이터-검정.html#cb31-1"></a><span class="kw">qqnorm</span>(sample_uni, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Sample from Uniform Distribution&quot;</span>)</span>
+<span id="cb31-2"><a href="데이터-검정.html#cb31-2"></a><span class="kw">qqline</span>(sample_uni)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 
 </div>
 </div>
