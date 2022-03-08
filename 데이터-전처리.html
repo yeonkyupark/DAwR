@@ -229,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="데이터-전처리.html#cb7-1"></a><span class="kw">marginplot</span>(penguins[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)], <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgray&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><code>mice</code> 패키지 <code>md.pattern()</code> 함수를 이용해서도 결측치를 확인할 수 있다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="데이터-전처리.html#cb8-1"></a><span class="kw">md.pattern</span>(penguins, <span class="dt">plot =</span> T, <span class="dt">rotate.names =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="데이터-전처리.html#cb8-1"></a><span class="kw">md.pattern</span>(penguins)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre><code>##     species island year bill_length_mm bill_depth_mm flipper_length_mm
 ## 333       1      1    1              1             1                 1
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## P.orig       43.92193      17.15117          200.9152    4201.754
 ## P.zero       43.66657      17.05145          199.7471    4177.326
 ## P.mean       43.92193      17.15117          200.9152    4201.754
-## p.mice       43.92558      17.14738          200.9273    4203.125</code></pre>
+## p.mice       43.92238      17.15523          201.0087    4206.831</code></pre>
 
 </div>
 </div>
