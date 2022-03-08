@@ -52,6 +52,12 @@ aggr(penguins, prop=F, numbers=T)
 marginplot(penguins[c(3:4)], pch=20, col=c("darkgray", "red", "blue"))
 ```
 
+`mice` 패키지 `md.pattern()` 함수를 이용해서도 결측치를 확인할 수 있다.
+
+```{r}
+md.pattern(penguins)
+```
+
 ### 결측치 제거
 
 결측치가 변수가 영향이 없고 표본 크기가 충분히 크다면 간단히 제거함으로써 데이터를 정제할 수 있다.
