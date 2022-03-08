@@ -55,7 +55,7 @@ marginplot(penguins[c(3:4)], pch=20, col=c("darkgray", "red", "blue"))
 `mice` 패키지 `md.pattern()` 함수를 이용해서도 결측치를 확인할 수 있다.
 
 ```{r}
-md.pattern(penguins)
+md.pattern(penguins, plot = T, rotate.names = T)
 ```
 
 ### 결측치 제거
