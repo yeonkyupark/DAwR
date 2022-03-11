@@ -19,6 +19,16 @@ na값을-제거하고-평균-계산
 정규성-검정
 caret-package
 전처리
+creating-dummy-variables
+zero--and-near-zero-variance-predictors
+identifying-correlated-predictors
+linear-dependencies
+the-preprocess-function
+centering-and-scaling
+imputation
+transforming-predictors
+putting-it-all-together
+class-distance-calculations
 데이터-분할
 모델-학습
 병렬처리-및-하이퍼-파라메터
