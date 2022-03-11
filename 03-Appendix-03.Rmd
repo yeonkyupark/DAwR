@@ -12,6 +12,80 @@
 
 ## 전처리
 
+```{r}
+if(!require(caret)) {
+  install.packages("caret")
+  library(caret)
+}
+
+if(!require(dplyr)) {
+  install.packages("dplyr")
+  library(dplyr)
+}
+
+if(!require(palmerpenguins)) {
+  install.packages("palmerpenguins")
+  library(palmerpenguins)
+}
+
+```
+
+### Creating Dummy Variables
+
+```{r}
+str(penguins)
+```
+
+더미변수는 model.matrix() 함수와 dummyVars() 함수를 통해 변환할 수 있다.  
+
+```{r}
+model.matrix(species ~ ., penguins) %>% head
+```
+
+
+```{r}
+dummies <- dummyVars(species ~ ., data = penguins)
+predict(dummies, penguins) %>% head
+```
+
+### Zero- and Near Zero-Variance Predictors
+
+```{r}
+nearZeroVar(penguins, saveMetrics = T)
+```
+
+```{r}
+data(mdrr)
+nzv <- nearZeroVar(mdrrDescr, saveMetrics = T); nzv[nzv$nzv,][1:10,]
+```
+
+```{r}
+nzv <- nearZeroVar(mdrrDescr)
+filteredDescr <- mdrrDescr[, -nzv]
+```
+
+### Identifying Correlated Predictors
+
+
+
+### Linear Dependencies
+
+### The preProcess Function
+
+### Centering and Scaling
+
+### Imputation
+
+### Transforming Predictors
+
+### Putting It All Together
+
+### Class Distance Calculations
+
+
+
+
+
 ## 데이터 분할
 
 ## 모델 학습
