@@ -12,7 +12,7 @@
 
 ## 전처리
 
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 if(!require(caret)) {
   install.packages("caret")
   library(caret)
