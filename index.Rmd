@@ -17,11 +17,8 @@ favicon: "favicon.ico"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
+knitr::opts_chunk$set(echo = TRUE,	message = FALSE,	warning = FALSE )
+knitr::opts_knit$set(progress = FALSE, verbose = FALSE)
 ```
 
 # 시작하기 {.unnumbered}
