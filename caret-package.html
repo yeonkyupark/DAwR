@@ -62,70 +62,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -223,17 +159,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <div id="전처리" class="section level2 hasAnchor">
 <h2><span class="header-section-number">6.1</span> 전처리<a href="caret-package.html#전처리" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## 
-##   There is a binary version available but the source version is later:
-##       binary source needs_compilation
-## caret 6.0-90 6.0-91              TRUE
-## 
-## 
-## The downloaded binary packages are in
-##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpu7SCZ4/downloaded_packages</code></pre>
 <div id="creating-dummy-variables" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.1</span> Creating Dummy Variables<a href="caret-package.html#creating-dummy-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="caret-package.html#cb33-1"></a><span class="kw">str</span>(penguins)</span></code></pre></div>
 <pre><code>## tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
 ##  $ species          : Factor w/ 3 levels &quot;Adelie&quot;,&quot;Chinstrap&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ island           : Factor w/ 3 levels &quot;Biscoe&quot;,&quot;Dream&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -244,7 +171,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ sex              : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 NA 1 2 1 2 NA NA ...
 ##  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
 <p>더미변수는 model.matrix() 함수와 dummyVars() 함수를 통해 변환할 수 있다.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="caret-package.html#cb35-1"></a><span class="kw">model.matrix</span>(species <span class="op">~</span><span class="st"> </span>., penguins) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
 <pre><code>##   (Intercept) islandDream islandTorgersen bill_length_mm bill_depth_mm
 ## 1           1           0               1           39.1          18.7
 ## 2           1           0               1           39.5          17.4
@@ -259,8 +185,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5               193        3450       0 2007
 ## 6               190        3650       1 2007
 ## 7               181        3625       0 2007</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="caret-package.html#cb37-1"></a>dummies &lt;-<span class="st"> </span><span class="kw">dummyVars</span>(species <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> penguins)</span>
-<span id="cb37-2"><a href="caret-package.html#cb37-2"></a><span class="kw">predict</span>(dummies, penguins) <span class="op">%&gt;%</span><span class="st"> </span>head</span></code></pre></div>
 <pre><code>##   island.Biscoe island.Dream island.Torgersen bill_length_mm bill_depth_mm
 ## 1             0            0                1           39.1          18.7
 ## 2             0            0                1           39.5          17.4
@@ -278,7 +202,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="zero--and-near-zero-variance-predictors" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.2</span> Zero- and Near Zero-Variance Predictors<a href="caret-package.html#zero--and-near-zero-variance-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="caret-package.html#cb39-1"></a><span class="kw">nearZeroVar</span>(penguins, <span class="dt">saveMetrics =</span> T)</span></code></pre></div>
 <pre><code>##                   freqRatio percentUnique zeroVar   nzv
 ## species            1.225806     0.8720930   FALSE FALSE
 ## island             1.354839     0.8720930   FALSE FALSE
@@ -288,8 +211,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## body_mass_g        1.090909    27.3255814   FALSE FALSE
 ## sex                1.018182     0.5813953   FALSE FALSE
 ## year               1.052632     0.8720930   FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="caret-package.html#cb41-1"></a><span class="kw">data</span>(mdrr)</span>
-<span id="cb41-2"><a href="caret-package.html#cb41-2"></a>nzv &lt;-<span class="st"> </span><span class="kw">nearZeroVar</span>(mdrrDescr, <span class="dt">saveMetrics =</span> T); nzv[nzv<span class="op">$</span>nzv,][<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,]</span></code></pre></div>
 <pre><code>##        freqRatio percentUnique zeroVar  nzv
 ## nTB     23.00000     0.3787879   FALSE TRUE
 ## nBR    131.00000     0.3787879   FALSE TRUE
@@ -301,33 +222,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## D.Dr03 527.00000     0.3787879   FALSE TRUE
 ## D.Dr07 123.50000     5.8712121   FALSE TRUE
 ## D.Dr08 527.00000     0.3787879   FALSE TRUE</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="caret-package.html#cb43-1"></a>nzv &lt;-<span class="st"> </span><span class="kw">nearZeroVar</span>(mdrrDescr)</span>
-<span id="cb43-2"><a href="caret-package.html#cb43-2"></a>filteredDescr &lt;-<span class="st"> </span>mdrrDescr[, <span class="op">-</span>nzv]</span></code></pre></div>
 </div>
 <div id="identifying-correlated-predictors" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.3</span> Identifying Correlated Predictors<a href="caret-package.html#identifying-correlated-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="caret-package.html#cb44-1"></a>descrCor &lt;-<span class="st"> </span><span class="kw">cor</span>(filteredDescr)</span>
-<span id="cb44-2"><a href="caret-package.html#cb44-2"></a>highCorr &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(descrCor[<span class="kw">upper.tri</span>(descrCor)]) <span class="op">&gt;</span><span class="st"> </span><span class="fl">.999</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="caret-package.html#cb45-1"></a><span class="kw">summary</span>(descrCor[<span class="kw">upper.tri</span>(descrCor)])</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## -0.99607 -0.05373  0.25006  0.26078  0.65527  1.00000</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="caret-package.html#cb47-1"></a>highlyCorDescr &lt;-<span class="st"> </span><span class="kw">findCorrelation</span>(descrCor, <span class="dt">cutoff =</span> <span class="fl">.75</span>)</span>
-<span id="cb47-2"><a href="caret-package.html#cb47-2"></a>filteredDescr &lt;-<span class="st"> </span>filteredDescr[,<span class="op">-</span>highlyCorDescr]</span>
-<span id="cb47-3"><a href="caret-package.html#cb47-3"></a>descrCor2 &lt;-<span class="st"> </span><span class="kw">cor</span>(filteredDescr)</span>
-<span id="cb47-4"><a href="caret-package.html#cb47-4"></a><span class="kw">summary</span>(descrCor2[<span class="kw">upper.tri</span>(descrCor2)])</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## -0.70728 -0.05378  0.04418  0.06692  0.18858  0.74458</code></pre>
 </div>
 <div id="linear-dependencies" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.4</span> Linear Dependencies<a href="caret-package.html#linear-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="caret-package.html#cb49-1"></a>ltfrDesign &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow=</span><span class="dv">6</span>, <span class="dt">ncol=</span><span class="dv">6</span>)</span>
-<span id="cb49-2"><a href="caret-package.html#cb49-2"></a>ltfrDesign[,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb49-3"><a href="caret-package.html#cb49-3"></a>ltfrDesign[,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb49-4"><a href="caret-package.html#cb49-4"></a>ltfrDesign[,<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb49-5"><a href="caret-package.html#cb49-5"></a>ltfrDesign[,<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb49-6"><a href="caret-package.html#cb49-6"></a>ltfrDesign[,<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb49-7"><a href="caret-package.html#cb49-7"></a>ltfrDesign[,<span class="dv">6</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="caret-package.html#cb50-1"></a>comboInfo &lt;-<span class="st"> </span><span class="kw">findLinearCombos</span>(ltfrDesign); comboInfo</span></code></pre></div>
 <pre><code>## $linearCombos
 ## $linearCombos[[1]]
 ## [1] 3 1 2
@@ -338,7 +242,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $remove
 ## [1] 3 6</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="caret-package.html#cb52-1"></a>ltfrDesign[, <span class="op">-</span>comboInfo<span class="op">$</span>remove]</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    1    1    0
 ## [2,]    1    1    0    1
@@ -353,17 +256,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="centering-and-scaling" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.6</span> Centering and Scaling<a href="caret-package.html#centering-and-scaling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="caret-package.html#cb54-1"></a><span class="kw">set.seed</span>(<span class="dv">96</span>)</span>
-<span id="cb54-2"><a href="caret-package.html#cb54-2"></a>inTrain &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dt">along=</span>mdrrClass), <span class="kw">length</span>(mdrrClass)<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb54-3"><a href="caret-package.html#cb54-3"></a>training &lt;-<span class="st"> </span>filteredDescr[inTrain,]</span>
-<span id="cb54-4"><a href="caret-package.html#cb54-4"></a>test &lt;-<span class="st"> </span>filteredDescr[<span class="op">-</span>inTrain,]</span>
-<span id="cb54-5"><a href="caret-package.html#cb54-5"></a>trainMDRR &lt;-<span class="st"> </span>mdrrClass[inTrain]</span>
-<span id="cb54-6"><a href="caret-package.html#cb54-6"></a>testMDRR &lt;-<span class="st"> </span>mdrrClass[<span class="op">-</span>inTrain]</span>
-<span id="cb54-7"><a href="caret-package.html#cb54-7"></a></span>
-<span id="cb54-8"><a href="caret-package.html#cb54-8"></a>preProcValues &lt;-<span class="st"> </span><span class="kw">preProcess</span>(training, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</span>
-<span id="cb54-9"><a href="caret-package.html#cb54-9"></a></span>
-<span id="cb54-10"><a href="caret-package.html#cb54-10"></a>trainTransformed &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcValues, training)</span>
-<span id="cb54-11"><a href="caret-package.html#cb54-11"></a>testTransformed &lt;-<span class="st"> </span><span class="kw">predict</span>(preProcValues, test)</span></code></pre></div>
 </div>
 <div id="imputation" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.7</span> Imputation<a href="caret-package.html#imputation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -373,15 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="putting-it-all-together" class="section level3 hasAnchor">
 <h3><span class="header-section-number">6.1.9</span> Putting It All Together<a href="caret-package.html#putting-it-all-together" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="caret-package.html#cb55-1"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(AppliedPredictiveModeling)) {</span>
-<span id="cb55-2"><a href="caret-package.html#cb55-2"></a>  <span class="kw">install.packages</span>(<span class="st">&quot;AppliedPredictiveModeling&quot;</span>)</span>
-<span id="cb55-3"><a href="caret-package.html#cb55-3"></a>  <span class="kw">library</span>(AppliedPredictiveModeling)</span>
-<span id="cb55-4"><a href="caret-package.html#cb55-4"></a>}</span></code></pre></div>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpu7SCZ4/downloaded_packages</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="caret-package.html#cb57-1"></a><span class="kw">data</span>(<span class="st">&quot;schedulingData&quot;</span>)</span>
-<span id="cb57-2"><a href="caret-package.html#cb57-2"></a><span class="kw">str</span>(schedulingData)</span></code></pre></div>
+##  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmp9E8nT0/downloaded_packages</code></pre>
 <pre><code>## &#39;data.frame&#39;:    4331 obs. of  8 variables:
 ##  $ Protocol   : Factor w/ 14 levels &quot;A&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,..: 4 4 4 4 4 4 4 4 4 4 ...
 ##  $ Compounds  : num  997 97 101 93 100 100 105 98 101 95 ...
@@ -391,8 +277,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ Hour       : num  14 13.8 13.8 10.1 10.4 ...
 ##  $ Day        : Factor w/ 7 levels &quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,..: 2 2 4 5 5 3 5 5 5 3 ...
 ##  $ Class      : Factor w/ 4 levels &quot;VF&quot;,&quot;F&quot;,&quot;M&quot;,&quot;L&quot;: 2 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="caret-package.html#cb59-1"></a>pp_hpc &lt;-<span class="st"> </span><span class="kw">preProcess</span>(schedulingData[, <span class="dv">-8</span>],</span>
-<span id="cb59-2"><a href="caret-package.html#cb59-2"></a>                     <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>, <span class="st">&quot;YeoJohnson&quot;</span>)); pp_hpc;</span></code></pre></div>
 <pre><code>## Created from 4331 samples and 7 variables
 ## 
 ## Pre-processing:
@@ -403,8 +287,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Lambda estimates for Yeo-Johnson transformation:
 ## -0.08, -0.03, -1.05, -1.1, 1.44</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="caret-package.html#cb61-1"></a>transformed &lt;-<span class="st"> </span><span class="kw">predict</span>(pp_hpc, schedulingData[, <span class="dv">-8</span>])</span>
-<span id="cb61-2"><a href="caret-package.html#cb61-2"></a><span class="kw">head</span>(transformed)</span></code></pre></div>
 <pre><code>##   Protocol  Compounds InputFields Iterations NumPending         Hour Day
 ## 1        E  1.2289592  -0.6324580 -0.0615593  -0.554123  0.004586516 Tue
 ## 2        E -0.6065826  -0.8120473 -0.0615593  -0.554123 -0.043733201 Tue
@@ -412,10 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4        E -0.6427737  -1.0047277 -0.0615593  -0.554123 -0.964170752 Fri
 ## 5        E -0.5804713  -0.9564504 -0.0615593  -0.554123 -0.902085020 Fri
 ## 6        E -0.5804713  -0.9564504 -0.0615593  -0.554123  0.698108782 Wed</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="caret-package.html#cb63-1"></a><span class="kw">mean</span>(schedulingData<span class="op">$</span>NumPending <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7561764</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="caret-package.html#cb65-1"></a>pp_no_nzv &lt;-<span class="st"> </span><span class="kw">preProcess</span>(schedulingData[, <span class="dv">-8</span>],</span>
-<span id="cb65-2"><a href="caret-package.html#cb65-2"></a>                        <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>, <span class="st">&quot;YeoJohnson&quot;</span>, <span class="st">&quot;nzv&quot;</span>)); pp_no_nzv</span></code></pre></div>
 <pre><code>## Created from 4331 samples and 7 variables
 ## 
 ## Pre-processing:
@@ -427,7 +306,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Lambda estimates for Yeo-Johnson transformation:
 ## -0.08, -0.03, -1.05, 1.44</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="caret-package.html#cb67-1"></a>pp_no_nzv<span class="op">$</span>method</span></code></pre></div>
 <pre><code>## $center
 ## [1] &quot;Compounds&quot;   &quot;InputFields&quot; &quot;Iterations&quot;  &quot;Hour&quot;       
 ## 
@@ -442,7 +320,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## $remove
 ## [1] &quot;NumPending&quot;</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="caret-package.html#cb69-1"></a><span class="kw">predict</span>(pp_no_nzv, <span class="dt">newdata =</span> schedulingData[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">-8</span>])</span></code></pre></div>
 <pre><code>##   Protocol  Compounds InputFields Iterations         Hour Day
 ## 1        E  1.2289592  -0.6324580 -0.0615593  0.004586516 Tue
 ## 2        E -0.6065826  -0.8120473 -0.0615593 -0.043733201 Tue

@@ -62,70 +62,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -220,7 +156,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="결측치-확인" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.1</span> 결측치 확인<a href="데이터-전처리.html#결측치-확인" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>결측치를 확인하는 방법은 여러가지가 있으나 <code>is.na()</code> 함수나 <code>summary()</code> 함수를 통해 가능하다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="데이터-전처리.html#cb2-1"></a><span class="kw">summary</span>(penguins)</span></code></pre></div>
 <pre><code>##       species          island    bill_length_mm  bill_depth_mm  
 ##  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
 ##  Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
@@ -237,19 +172,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
 ##  Max.   :231.0     Max.   :6300                Max.   :2009  
 ##  NA&#39;s   :2         NA&#39;s   :2</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="데이터-전처리.html#cb4-1"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(penguins))</span></code></pre></div>
 <pre><code>##           species            island    bill_length_mm     bill_depth_mm 
 ##                 0                 0                 2                 2 
 ## flipper_length_mm       body_mass_g               sex              year 
 ##                 2                 2                11                 0</code></pre>
 <p><code>VIM</code> 패키지 <code>aggr()</code> 함수를 사용하면 결측치를 시각화 할 수 있다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="데이터-전처리.html#cb6-1"></a><span class="kw">aggr</span>(penguins, <span class="dt">prop=</span>F, <span class="dt">numbers=</span>T)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="데이터-전처리.html#cb7-1"></a><span class="kw">marginplot</span>(penguins[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)], <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;darkgray&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="Figures/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Figures/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><code>mice</code> 패키지 <code>md.pattern()</code> 함수를 이용해서도 결측치를 확인할 수 있다.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="데이터-전처리.html#cb8-1"></a><span class="kw">md.pattern</span>(penguins, <span class="dt">plot =</span> T, <span class="dt">rotate.names =</span> T)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Figures/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>##     species island year bill_length_mm bill_depth_mm flipper_length_mm
 ## 333       1      1    1              1             1                 1
 ## 9         1      1    1              1             1                 1
@@ -264,9 +195,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="결측치-제거" class="section level3 hasAnchor">
 <h3><span class="header-section-number">2.1.2</span> 결측치 제거<a href="데이터-전처리.html#결측치-제거" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>결측치가 변수가 영향이 없고 표본 크기가 충분히 크다면 간단히 제거함으로써 데이터를 정제할 수 있다.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="데이터-전처리.html#cb10-1"></a>penguins.naomit1 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(penguins); penguins.naomit2 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(penguins);</span>
-<span id="cb10-2"><a href="데이터-전처리.html#cb10-2"></a><span class="kw">rbind</span>(<span class="dt">penguins.naomit1 =</span> <span class="kw">colSums</span>(<span class="kw">is.na</span>(penguins.naomit1)), </span>
-<span id="cb10-3"><a href="데이터-전처리.html#cb10-3"></a>      <span class="dt">penguins.naomit2 =</span> <span class="kw">colSums</span>(<span class="kw">is.na</span>(penguins.naomit2)))</span></code></pre></div>
 <pre><code>##                  species island bill_length_mm bill_depth_mm flipper_length_mm
 ## penguins.naomit1       0      0              0             0                 0
 ## penguins.naomit2       0      0              0             0                 0
@@ -281,29 +209,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>결측치를 하나의 값(0, 평균/중앙값 등)으로 대체하는 방법이다. 이 방법은 무작위적이지 않기 때문에 무작위 오차가 발생하지 않는다. 즉 누락된 데이터의 양이 많을수록 표준오차가 과소평가되고 변수들간의 상관관계에 영향을 주어 부정확한 p값을 산출하게 된다.</p>
 <div id="na값을-제거하고-평균-계산" class="section level5 hasAnchor">
 <h5><span class="header-section-number">2.1.3.1.1</span> NA값을 제거하고 평균 계산<a href="데이터-전처리.html#na값을-제거하고-평균-계산" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="데이터-전처리.html#cb12-1"></a>p &lt;-<span class="st"> </span>penguins[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)]</span>
-<span id="cb12-2"><a href="데이터-전처리.html#cb12-2"></a><span class="kw">colMeans</span>(p, <span class="dt">na.rm =</span> T)</span></code></pre></div>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
 ##          43.92193          17.15117         200.91520        4201.75439</code></pre>
 </div>
 <div id="으로-대체" class="section level5 hasAnchor">
 <h5><span class="header-section-number">2.1.3.1.2</span> 0으로 대체<a href="데이터-전처리.html#으로-대체" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="데이터-전처리.html#cb14-1"></a>p<span class="fl">.0</span> &lt;-<span class="st"> </span>penguins[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)]</span>
-<span id="cb14-2"><a href="데이터-전처리.html#cb14-2"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">colnames</span>(p<span class="fl">.0</span>)) { </span>
-<span id="cb14-3"><a href="데이터-전처리.html#cb14-3"></a>  p<span class="fl">.0</span>[<span class="kw">is.na</span>(p<span class="fl">.0</span>[,i]), i] &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb14-4"><a href="데이터-전처리.html#cb14-4"></a>}</span>
-<span id="cb14-5"><a href="데이터-전처리.html#cb14-5"></a><span class="kw">colMeans</span>(p<span class="fl">.0</span>)</span></code></pre></div>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
 ##          43.66657          17.05145         199.74709        4177.32558</code></pre>
 </div>
 <div id="평균으로-대체" class="section level5 hasAnchor">
 <h5><span class="header-section-number">2.1.3.1.3</span> 평균으로 대체<a href="데이터-전처리.html#평균으로-대체" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="데이터-전처리.html#cb16-1"></a>p.mean &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(penguins[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)])</span>
-<span id="cb16-2"><a href="데이터-전처리.html#cb16-2"></a>all_column_mean &lt;-<span class="st"> </span><span class="kw">apply</span>(p.mean, <span class="dv">2</span>, mean, <span class="dt">na.rm=</span>T)</span>
-<span id="cb16-3"><a href="데이터-전처리.html#cb16-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">colnames</span>(p.mean)) { </span>
-<span id="cb16-4"><a href="데이터-전처리.html#cb16-4"></a>  p.mean[<span class="kw">is.na</span>(p.mean[,i]), i] &lt;-<span class="st"> </span>all_column_mean[i]</span>
-<span id="cb16-5"><a href="데이터-전처리.html#cb16-5"></a>}</span>
-<span id="cb16-6"><a href="데이터-전처리.html#cb16-6"></a><span class="kw">colMeans</span>(p.mean)</span></code></pre></div>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
 ##          43.92193          17.15117         200.91520        4201.75439</code></pre>
 </div>
@@ -311,7 +226,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="다중-대체" class="section level4 hasAnchor">
 <h4><span class="header-section-number">2.1.3.2</span> 다중 대체<a href="데이터-전처리.html#다중-대체" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>시뮬레이션을 통해 제시된 최적의 해로 대체한다. <code>MICE</code>와 `<code>Amelia</code>가 다중 대체법을 지원하는 대표적인 패키지이다.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="데이터-전처리.html#cb18-1"></a>p.mice &lt;-<span class="st"> </span><span class="kw">mice</span>(penguins, <span class="dt">m=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 
 ##  iter imp variable
 ##   1   1  bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex
@@ -319,19 +233,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   3   1  bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex
 ##   4   1  bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex
 ##   5   1  bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="데이터-전처리.html#cb20-1"></a>p.mice.complete &lt;-<span class="st"> </span><span class="kw">complete</span>(p.mice,<span class="dv">1</span>)</span></code></pre></div>
 <p><strong>제거/대체를 통해 데이터 정제한 평균값 비교</strong></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="데이터-전처리.html#cb21-1"></a><span class="kw">rbind</span>(</span>
-<span id="cb21-2"><a href="데이터-전처리.html#cb21-2"></a>  <span class="dt">P.orig =</span> <span class="kw">colMeans</span>(p, <span class="dt">na.rm =</span> T),</span>
-<span id="cb21-3"><a href="데이터-전처리.html#cb21-3"></a>  <span class="dt">P.zero =</span> <span class="kw">colMeans</span>(p<span class="fl">.0</span>),</span>
-<span id="cb21-4"><a href="데이터-전처리.html#cb21-4"></a>  <span class="dt">P.mean =</span> <span class="kw">colMeans</span>(p.mean),</span>
-<span id="cb21-5"><a href="데이터-전처리.html#cb21-5"></a>  <span class="dt">p.mice =</span> <span class="kw">colMeans</span>(p.mice.complete[<span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)])</span>
-<span id="cb21-6"><a href="데이터-전처리.html#cb21-6"></a>)</span></code></pre></div>
 <pre><code>##        bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
 ## P.orig       43.92193      17.15117          200.9152    4201.754
 ## P.zero       43.66657      17.05145          199.7471    4177.326
 ## P.mean       43.92193      17.15117          200.9152    4201.754
-## p.mice       43.90523      17.14244          200.8953    4202.471</code></pre>
+## p.mice       43.92907      17.15785          200.9622    4206.105</code></pre>
 
 </div>
 </div>
