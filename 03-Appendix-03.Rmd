@@ -66,13 +66,63 @@ filteredDescr <- mdrrDescr[, -nzv]
 
 ### Identifying Correlated Predictors
 
+```{r}
+descrCor <- cor(filteredDescr)
+highCorr <- sum(abs(descrCor[upper.tri(descrCor)]) > .999)
+```
 
+```{r}
+summary(descrCor[upper.tri(descrCor)])
+```
+
+```{r}
+highlyCorDescr <- findCorrelation(descrCor, cutoff = .75)
+filteredDescr <- filteredDescr[,-highlyCorDescr]
+descrCor2 <- cor(filteredDescr)
+summary(descrCor2[upper.tri(descrCor2)])
+```
 
 ### Linear Dependencies
 
+```{r}
+ltfrDesign <- matrix(0, nrow=6, ncol=6)
+ltfrDesign[,1] <- c(1, 1, 1, 1, 1, 1)
+ltfrDesign[,2] <- c(1, 1, 1, 0, 0, 0)
+ltfrDesign[,3] <- c(0, 0, 0, 1, 1, 1)
+ltfrDesign[,4] <- c(1, 0, 0, 1, 0, 0)
+ltfrDesign[,5] <- c(0, 1, 0, 0, 1, 0)
+ltfrDesign[,6] <- c(0, 0, 1, 0, 0, 1)
+```
+
+```{r}
+comboInfo <- findLinearCombos(ltfrDesign); comboInfo
+```
+
+```{r}
+ltfrDesign[, -comboInfo$remove]
+```
+
 ### The preProcess Function
 
+데이터 전처리 함수, `train()` 함수 수행 시 데이터와 I/F를 제공한다.
+
+
 ### Centering and Scaling
+
+```{r}
+set.seed(96)
+inTrain <- sample(seq(along=mdrrClass), length(mdrrClass)/2)
+training <- filteredDescr[inTrain,]
+test <- filteredDescr[-inTrain,]
+trainMDRR <- mdrrClass[inTrain]
+testMDRR <- mdrrClass[-inTrain]
+
+preProcValues <- preProcess(training, method = c("center", "scale"))
+
+trainTransformed <- predict(preProcValues, training)
+testTransformed <- predict(preProcValues, test)
+```
+
 
 ### Imputation
 
@@ -80,13 +130,43 @@ filteredDescr <- mdrrDescr[, -nzv]
 
 ### Putting It All Together
 
+```{r}
+if(!require(AppliedPredictiveModeling)) {
+  install.packages("AppliedPredictiveModeling")
+  library(AppliedPredictiveModeling)
+}
+data("schedulingData")
+str(schedulingData)
+```
+
+```{r}
+pp_hpc <- preProcess(schedulingData[, -8],
+                     method = c("center", "scale", "YeoJohnson")); pp_hpc;
+```
+
+```{r}
+transformed <- predict(pp_hpc, schedulingData[, -8])
+head(transformed)
+```
+```{r}
+mean(schedulingData$NumPending == 0)
+```
+
+```{r}
+pp_no_nzv <- preProcess(schedulingData[, -8],
+                        method = c("center", "scale", "YeoJohnson", "nzv")); pp_no_nzv
+pp_no_nzv$method
+```
+
+```{r}
+predict(pp_no_nzv, newdata = schedulingData[1:6, -8])
+```
+
 ### Class Distance Calculations
 
-
-
-
-
 ## 데이터 분할
+
+
 
 ## 모델 학습
 
