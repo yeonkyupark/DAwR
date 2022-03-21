@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 caret package | R을 이용한 데이터 분석</title>
+  <title>4.1 정규성 검정 | R을 이용한 데이터 분석</title>
   <meta name="description" content="<p>R을 이용한 데이터 분석 관련 내용을 담고 있습니다.
 데이터 통계 분석과 기계학습 부분으로 나누어져 있습니다.
 데이터 전처리, 시각화, 모델링, 성능평가, 성능향상 내용을 다룹니다.</p>" />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 caret package | R을 이용한 데이터 분석" />
+  <meta property="og:title" content="4.1 정규성 검정 | R을 이용한 데이터 분석" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>R을 이용한 데이터 분석 관련 내용을 담고 있습니다.
@@ -19,7 +19,7 @@
   <meta name="github-repo" content="yeonkyupark/DAwR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 caret package | R을 이용한 데이터 분석" />
+  <meta name="twitter:title" content="4.1 정규성 검정 | R을 이용한 데이터 분석" />
   
   <meta name="twitter:description" content="<p>R을 이용한 데이터 분석 관련 내용을 담고 있습니다.
 데이터 통계 분석과 기계학습 부분으로 나누어져 있습니다.
@@ -36,8 +36,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="정규성-검정.html"/>
-<link rel="next" href="전처리-1.html"/>
+<link rel="prev" href="데이터-검정.html"/>
+<link rel="next" href="caret-package.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,33 +137,35 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="caret-package" class="section level1 hasAnchor">
-<h1><span class="header-section-number">5</span> caret package<a href="caret-package.html#caret-package" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><strong>The caret Package</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<blockquote>
-<p>The caret package (short for Classification And REgression Training) is a set of functions that attempt to streamline the process for creating predictive models. The package contains tools for:</p>
-<ul>
-<li>data splitting</li>
-<li>pre-processing</li>
-<li>feature selection</li>
-<li>model tuning using resampling</li>
-<li>variable importance estimation</li>
-</ul>
-</blockquote>
+<div id="정규성-검정" class="section level2 hasAnchor">
+<h2><span class="header-section-number">4.1</span> 정규성 검정<a href="정규성-검정.html#정규성-검정" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>정규분포를 따른 통계분석 기법을 사용하기 위해서는 표본의 정규성 여부를 확인해야 한다. 정규성 검정은 <code>shapiro.test()</code> 함수나 <code>qqnorm()</code> 함수를 통해 확인할 수 있다.</p>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  sample
+## W = 0.99388, p-value = 0.9349</code></pre>
+<p>Shapiro-Wilk 정규성 검정은 주어진 표본이 정규성을 따른다는 귀무가설을 검정한다. p값이 0.9349으로 귀무가설을 채택한다. 즉 주어진 표본은 정규성을 따른다고 판단된다.</p>
+<p>qqnorm() 함수와 qqline() 함수는 정규성 여부를 시각화 한다.</p>
+<p><img src="Figures/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /><img src="Figures/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>참고로 일양분포(uniform distribution)로 생성된 표본의 경우 정규성 검정 결과는 다음과 같다.</p>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  sample_uni
+## W = 0.95237, p-value = 0.001192</code></pre>
+<p>p값이 0.0012로 귀무가설을 기각한다. 즉 주어진 표본은 정규성을 따른다고 판단할 수 없다.</p>
+<p><img src="Figures/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /><img src="Figures/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
+
 </div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p><a href="https://topepo.github.io/caret/" class="uri">https://topepo.github.io/caret/</a><a href="caret-package.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="정규성-검정.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="전처리-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="데이터-검정.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="caret-package.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -194,7 +196,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yeonkyupark/DAwR/edit/main/03-Appendix-03.Rmd",
+"link": "https://github.com/yeonkyupark/DAwR/edit/main/03-Appendix-02.Rmd",
 "text": "Edit"
 },
 "history": {
