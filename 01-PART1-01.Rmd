@@ -1,0 +1,37 @@
+# 가설 검정
+
+**가설 검정 Cheat key**
+
+:   -   범주형 자료
+        -   일원 자료 chisq.test()
+        -   이원 자료 chisq.test()
+        -   표본의 수가 적을 때
+            -   피셔의 정확 검정(Fisher's exact test)
+        -   사건 전후의 변화 검정
+            -   맥니마 검정(McNemar Test)
+    -   연속형 자료
+        -   한 집단
+            -   정규성 만족 시 t.test()
+            -   정규성 불만족 시 wilcox.test() - Wilcoxon singed rank test
+        -   두 집단
+            -   독립 표본
+                -   정규성 만족 시 t.test()
+                -   정규성 불만족 시 wilcox.test() - Wilcoxon rank sum test
+            -   쌍을 이룬 표본
+                -   정규성 만족 시 t.test()
+                -   정규성 불만족 시 wilcox.test() - Wilcoxon signed rank test
+        -   세 집단 이상
+            -   정규성 만족 시 aov()
+            -   정규성 불만족 시 kruskal()
+            -   사후 검정 Fisher's LSD, Bonferroni, Shelf, Turkey, Duncan
+    -   비율검정
+        -   일표본 binom.test()
+        -   이표본 prop.test()
+    -   정규성 검정
+        -   shapiro.test(), Shapiro-Wilk Normality Test
+        -   ks.test(), Kolmogorov-Smirnov Tests
+        -   QQ-Plot
+    -   동질성 검정
+        -   일표본 varTest()
+        -   이표본 var.test()
+        -   삼표본 이상 bartlett.test()

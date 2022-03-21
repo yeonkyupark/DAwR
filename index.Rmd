@@ -39,24 +39,3 @@ knitr::opts_chunk$set(# root.dir = '../..', # 프로젝트 폴더 지정
 
 실무 경험을 바탕으로 R을 이용한 `통계분석`과 `기계학습` 내용을 담고 있다.
 
-## R 패키지 목록 {.unnumbered}
-
-예제에서 사용한 패키지 목록이다.
-
-```{r echo=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(.packages()), 'packages.bib')
-```
-
-```{r echo=FALSE, include=FALSE}
-if(!require(bibtex)) {
-  install.packages("bibtex")
-  library(bibtex)
-}
-```
-
-```{r echo=FALSE}
-refs <- read.bib("packages.bib")
-keys <- names(refs)
-keys
-```
